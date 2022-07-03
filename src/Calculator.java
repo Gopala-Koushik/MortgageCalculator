@@ -4,12 +4,13 @@ public class Calculator {
     private double rateOfInterest;
     private int numberOfYears;
 
-    public static final int numberOfMonthlyPayments = 12;
+    private int numberOfMonthlyPayments = 12;
 
-    Calculator(double principleAmount, double rateOfInterest, int numberOfYears){
+    Calculator(double principleAmount, double rateOfInterest, int numberOfYears,int numberOfMonthlyPayments){
         this.principleAmount = principleAmount;
         this.rateOfInterest = rateOfInterest;
         this.numberOfYears = numberOfYears;
+        this.numberOfMonthlyPayments = numberOfMonthlyPayments;
     }
 
     private double balanceCalculator(int numberOfPayments){
@@ -33,6 +34,14 @@ public class Calculator {
         return monthlyInstallments;
     }
 
+    private double MortgageInterest(){
+
+        int numberOfInstallments = numberOfMonthlyPayments*numberOfYears;
+        double monthlyInstallments = MortgageCalculator();
+
+        return (numberOfInstallments*monthlyInstallments-principleAmount);
+    }
+
     public double getMortgageCalculator(){
         return MortgageCalculator();
     }
@@ -45,12 +54,20 @@ public class Calculator {
         return principleAmount;
     }
 
+    public double getInterestPaid(){
+        return MortgageInterest();
+    }
+
     public double getRateOfInterest(){
         return rateOfInterest;
     }
 
     public int getNumberOfYears(){
         return numberOfYears;
+    }
+
+    public int getNumberOfMonthlyPayments(){
+        return numberOfMonthlyPayments;
     }
 
 }
